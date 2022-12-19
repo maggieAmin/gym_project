@@ -26,3 +26,8 @@ def create_member():
 def show(id):
     member = member_repository.select(id)
     return render_template("members/show.html", member=member)
+
+@members_blueprint.route("/members/<id>/edit", methods=['GET'])
+def edit_member(id):
+    member = member_repository.select(id)
+    return render_template("book/edi")
