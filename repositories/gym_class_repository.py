@@ -27,3 +27,7 @@ def select(id):
     if result is not None:
         gym_class = Gym_class(result['title'], result['capacity'], result['id'])
     return gym_class
+
+def gym_classes_for_member(member):
+    gym_classes = [ ]
+    sql = "SELECT gym_classes.* FROM gym_classes INNER JOIN "
