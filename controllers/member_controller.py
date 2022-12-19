@@ -21,3 +21,8 @@ def create_member():
     member = Member(name)
     member_repository.save(member)
     return redirect("/members")
+
+@members_blueprint.route("/members/<id>")
+def show(id):
+    member = member_repository.select(id)
+    return render_template("members/show.html", member=member)
