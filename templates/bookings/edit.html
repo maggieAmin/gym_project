@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="/bookings/{{booking.id}}" method="post">
+
+    <div>
+        <label for="member_id">Member:</label>
+        <select id="member_id" name="member_id" required autofocus>
+            {% for member in members %}
+                <option value="{{ member.id }}" {%if member.id == booking.member.id%}selected="selected"{%endif%}>{{ member.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="gym_class_id">Gym class:</label>
+        <select id="gym_class_id" name="gym_class_id" required autofocus>
+            {% for gym_class in gym_classes %}
+                <option value="{{gym_class.id}}"{%if gym_class.id == booking.gym_class.id%}selected="selected"{%endif%}>{{gym_class.title}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Update Booking</button>
+
+</form>
+{% endblock %}

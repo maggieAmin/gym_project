@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <p>{{booking.member.name}}</p>
+    <p>{{booking.gym_class.title}}</p>
+    <p><a href="/bookings/{{booking.id}}/edit">Edit</a></p>
+</div>
+
+{% endblock %}

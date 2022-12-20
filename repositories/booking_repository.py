@@ -22,3 +22,21 @@ def select_all():
         booking = Booking(member, gym_class, row['id'])
         bookings.append(booking)
     return bookings
+    
+def select(id):
+    booking = None
+    sql ="SELECT * FROM bookings WHERE id=%s"
+    values =[id]
+    results = run_sql(sql, values)
+    if results:
+        result =results[0]
+        member = member_repository.select(result['member_id'])
+        gym_class = gym_class_repository.select(result['gym_class_id'])
+        print(member, gym_class)
+        booking = Booking(member, gym_class, result['id'])
+    return booking
+
+def update(booking_id, member_id, gym_class_id):
+    sql = "UPDATE bookings SET (member_id, gym_class_id) = (%s, %s) WHERE id=%s"
+    values = [member_id, gym_class_id, booking_id]
+    run_sql(sql, values)
