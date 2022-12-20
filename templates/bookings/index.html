@@ -2,12 +2,12 @@
 {% block content %}
 <h1>Bookings</h1>
 
-<p><a href="/bookings/new">Bookings</a></p>
+<p><a href="/bookings/new">New booking</a></p>
 
 <ul>
     {% for booking in bookings %}
     <li>
-        <p>{{ booking.member.name }} - {{ booking.gym_class.title }}</p>
+        <p>{{ booking.id }} - {{ booking.member.name }} - {{ booking.gym_class.title }}</p>
     </li>
     {% endfor %}
 </ul>
