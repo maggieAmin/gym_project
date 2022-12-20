@@ -6,5 +6,12 @@
     <p>{{gym_class.capacity}}</p>
     <p><a href="/gym_classes/{{gym_class.id}}/edit">Edit</a></p>
 </div>
+<ul>
+    {% for booking in bookings %}
+    <li>
+        <p><a href="/bookings/{{booking.id}}/edit">{{ booking.member.name }}</a></p>
+    </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

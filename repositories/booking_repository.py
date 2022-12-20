@@ -40,3 +40,14 @@ def update(booking_id, member_id, gym_class_id):
     sql = "UPDATE bookings SET (member_id, gym_class_id) = (%s, %s) WHERE id=%s"
     values = [member_id, gym_class_id, booking_id]
     run_sql(sql, values)
+
+def select_members_for_class(gym_class_id):
+    bookings = []
+    sql = "SELECT * FROM bookings WHERE gym_class_id=%s"
+    results = run_sql(sql, [gym_class_id])
+    for row in results:
+        member = member_repository.select(row['member_id'])
+        gym_class = gym_class_repository.select(row['gym_class_id'])
+        booking = Booking(member, gym_class, row['id'])
+        bookings.append(booking)
+    return bookings
