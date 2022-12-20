@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    <p>{{gym_class.title}}</p>
+    <p>{{gym_class.capacity}}</p>
+    <p><a href="/gym_classes/{{gym_class.id}}/edit">Edit</a></p>
+</div>
+
+{% endblock %}
