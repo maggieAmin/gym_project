@@ -18,13 +18,13 @@ member_repository.save(member3)
 member4 = Member('Jennifer Anston')
 member_repository.save(member4)
 
-gym_class1 = Gym_class('Flexibility', 3)
+gym_class1 = Gym_class('Flexibility','2022-12-20 13:00', 3)
 gym_class_repository.save(gym_class1)
 
-gym_class2 = Gym_class('Yoga', 4)
+gym_class2 = Gym_class('Yoga', '2022-12-23 17:00', 4)
 gym_class_repository.save(gym_class2)
 
-gym_class3 = Gym_class('Zumba', 6)
+gym_class3 = Gym_class('Zumba', '2022-12-27 20:00', 6)
 gym_class_repository.save(gym_class3)
 
 booking1 = Booking(member1, gym_class3)

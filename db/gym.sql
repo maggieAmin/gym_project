@@ -10,7 +10,8 @@ CREATE TABLE members (
 CREATE TABLE gym_classes (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
-    capacity INT NOT NULL
+    capacity INT NOT NULL,
+    class_datetime TIMESTAMP NOT NULL
 );
 
 CREATE TABLE bookings (

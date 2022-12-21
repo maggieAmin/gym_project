@@ -18,8 +18,9 @@ def new_class():
 @gym_classes_blueprint.route("/gym_classes", methods=['POST'])
 def create_gym_class():
     title = request.form['title']
+    class_datetime = request.form['class_datetime']
     capacity = int(request.form['capacity'])
-    gym_class = Gym_class(title, capacity)
+    gym_class = Gym_class(title, class_datetime, capacity)
     gym_class_repository.save(gym_class)
     return redirect("/gym_classes")
 
@@ -37,10 +38,17 @@ def edit_gym_class(id):
 @gym_classes_blueprint.route("/gym_classes/<id>", methods=['POST'])
 def update_gym_class(id):
     title = request.form['title']
+    class_datetime = request.form['class_datetime']
     capacity = int(request.form['capacity'])
-    gym_class = Gym_class(title, capacity, id)
+    gym_class = Gym_class(title, class_datetime, capacity, id)
     gym_class_repository.update(gym_class)
     return redirect('/gym_classes')
+
+@gym_classes_blueprint.route("/gym_classes/<id>", methods=['GET'])
+def show_gym_class(id):
+    gym_class = gym_class_repository.select(id)
+    bookings = booking_repository.select_members_for_class(id)
+    return render_template("/gym_classes/show.html", gym_class=gym_class, bookings=bookings )
 
 
 
