@@ -27,6 +27,9 @@ gym_class_repository.save(gym_class2)
 gym_class3 = Gym_class('Zumba', '2022-12-27 20:00', 6)
 gym_class_repository.save(gym_class3)
 
+gym_class4 = Gym_class('Belly Dancing', '2022-12-25 21:00', 2)
+gym_class_repository.save(gym_class4)
+
 booking1 = Booking(member1, gym_class3)
 booking_repository.save(booking1)
 

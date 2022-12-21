@@ -2,6 +2,8 @@ from db.run_sql import run_sql
 from models.member import Member
 
 def save(member):
+    if member_exists(member.name):
+        return
     sql ="INSERT INTO members(name) VALUES (%s) RETURNING *"
     values = [member.name]
     results = run_sql(sql, values)
@@ -32,3 +34,11 @@ def update(member):
     sql = "UPDATE members SET name=%s WHERE id=%s"
     values = [member.name, member.id]
     run_sql(sql, values)
+
+def member_exists(name):
+    members = select_all()
+    for member in members:
+        if member.name == name:
+            return True
+    else:
+        return False

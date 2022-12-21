@@ -6,11 +6,16 @@ import repositories.gym_class_repository as gym_class_repository
 import repositories.member_repository as member_repository
 
 def save(booking):
-    sql = "INSERT INTO bookings (member_id, gym_class_id) VALUES (%s, %s) RETURNING id"
-    values = [booking.member.id, booking.gym_class.id]
-    results = run_sql(sql, values)
-    booking.id = results[0]['id']
-    return booking
+    gym_class = gym_class_repository.select(booking.gym_class.id)
+    current_members = select_members_for_class(booking.gym_class.id)
+    capacity = gym_class.capacity
+    current_members_number = len(current_members)
+    if current_members_number < capacity:
+        sql = "INSERT INTO bookings (member_id, gym_class_id) VALUES (%s, %s) RETURNING id"
+        values = [booking.member.id, booking.gym_class.id]
+        results = run_sql(sql, values)
+        booking.id = results[0]['id']
+        return booking
 
 def select_all():
     bookings = [ ]

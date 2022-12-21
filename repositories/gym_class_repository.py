@@ -1,9 +1,10 @@
 from db.run_sql import run_sql
 
 from models.gym_class import Gym_class
-# from models.member import Member
 
 def save(gym_class):
+    if gym_class_exists(gym_class.title):
+        return
     sql = "INSERT INTO gym_classes(title, class_datetime, capacity) VALUES (%s, %s, %s) RETURNING id"
     values = [gym_class.title, gym_class.class_datetime, gym_class.capacity]
     results = run_sql(sql, values)
@@ -30,7 +31,8 @@ def select(id):
 
 def update(gym_class):
     sql = "UPDATE gym_classes SET (title, class_datetime, capacity) = (%s, %s, %s) WHERE id=%s" 
-    values = [gym_class.title, gym_class.class_datetime, gym_class.capacity]
+    values = [gym_class.title, gym_class.class_datetime, gym_class.capacity, gym_class.id]
+    print(sql, values)
     run_sql(sql, values)
 
 def select_upcoming():
@@ -41,3 +43,11 @@ def select_upcoming():
         gym_class = Gym_class(row['title'], row['class_datetime'], row['capacity'], row['id'])
         upcoming_gym_classes.append(gym_class)
     return upcoming_gym_classes
+
+def gym_class_exists(title):
+    gym_classes = select_all()
+    for gym_class in gym_classes:
+        if gym_class.title == title:
+            return True
+    else:
+        return False
