@@ -35,7 +35,7 @@ def update(gym_class):
 
 def select_upcoming():
     upcoming_gym_classes = [ ]
-    sql = "SELECT * FROM gym_classes WHERE timedate > today "
+    sql = "SELECT * FROM gym_classes WHERE class_datetime > current_date "
     results = run_sql(sql)
     for row in results:
         gym_class = Gym_class(row['title'], row['class_datetime'], row['capacity'], row['id'])

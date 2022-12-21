@@ -44,11 +44,11 @@ def update_gym_class(id):
     gym_class_repository.update(gym_class)
     return redirect('/gym_classes')
 
-@gym_classes_blueprint.route("/gym_classes/<id>", methods=['GET'])
-def show_gym_class(id):
-    gym_class = gym_class_repository.select(id)
-    bookings = booking_repository.select_members_for_class(id)
-    return render_template("/gym_classes/show.html", gym_class=gym_class, bookings=bookings )
+@gym_classes_blueprint.route("/gym_classes/upcoming", methods=['GET'])
+def show_upcoming_classes():
+    upcoming_gym_classes = gym_class_repository.select_upcoming()
+    return render_template("gym_classes/index.html", gym_classes=upcoming_gym_classes)
+
 
 
 
