@@ -7,14 +7,12 @@
 <table>
     <tr>
         <th>Title</th>
-        <th></th>
         <th>Class Datetime</th>
         <th>Capacity</th>
     </tr>
     {% for gym_class in gym_classes %}
     <tr>
         <td><a href="/gym_classes/{{gym_class.id}}">{{gym_class.title}}</a></td>
-        <td></td>
         <td>{{gym_class.class_datetime}}</td>
         <td>{{gym_class.capacity}}</td>
     </tr>
