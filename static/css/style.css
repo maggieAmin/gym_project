@@ -45,9 +45,11 @@ footer {
     left: 0;
     bottom: 0;
     text-align: center;
+    color: rgb(172 11 154);
+    font-size: 25px;
     width: 100%;
     padding: 10px;
-    font-size: 20px;
+    font-size: 30px;
     background-color: rgb(200, 209, 209);
 }
 
