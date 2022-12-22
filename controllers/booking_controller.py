@@ -22,7 +22,7 @@ def new_booking():
 def create_booking():
     print(request.form)
     member = member_repository.select(request.form["member_id"])
-    gym_class = member_repository.select(request.form["gym_class_id"])
+    gym_class = gym_class_repository.select(request.form["gym_class_id"])
     booking = Booking(member, gym_class)
     booking_repository.save(booking)
     return redirect("/bookings")
